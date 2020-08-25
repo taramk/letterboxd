@@ -1,3 +1,4 @@
 *.txt
 !requirements.txt
 *.xml
+.DS_Store
