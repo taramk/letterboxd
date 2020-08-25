@@ -28,6 +28,7 @@ def parse_feed(username):
 		for subelem in elem.findall('item'):
 			# pull the imdb link for each movie item
 			movie_item = subelem[1].text.encode('utf-8').strip()
+			# pull out the imdb ID from the url, for letterboxd upload formatting
 			movie_item = movie_item.replace(imdb_url, "").replace("/", "")
 			movie_list.append(movie_item)
 	# save movie list to file
@@ -53,7 +54,9 @@ def find_matches_and_build_list():
 		for movie in shared_list:
 			file_handler.write("%s\n" % movie)
 
-# rolled up method to generate movie lists
+# rolled up method to generate individual movie lists
+# this is necessary because i have to wait for these two methods to finish
+# before i can build the shared list - see main()
 def generate_lists():
 	for username in usernames:
 		generate_feed(username)
